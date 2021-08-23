@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+cd /app/babybuddy || exit
+
+export \
+    DJANGO_SETTINGS_MODULE="babybuddy.settings.base" \
+    ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
+    TIME_ZONE="${TZ:-UTC}" \
+    DEBUG="${DEBUG:-False}" \
+    SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
+
+exec \
+    s6-setuidgid root gunicorn babybuddy.wsgi -b :8000 --log-level=info \
+        --worker-tmp-dir=/dev/shm --log-file=- \
+        --workers=2 --threads=4 --worker-class=gthread

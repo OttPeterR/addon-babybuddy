@@ -1,0 +1,22 @@
+{
+  "name": "Baby Buddy",
+  "version": "0.0.1",
+  "slug": "baby_buddy",
+  "description": "Helps caregivers track sleep, feedings, diaper changes, tummy time and more to learn about and predict baby's needs without (as much) guess work.",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "startup": "application",
+  "panel_icon": "hass:baby-bottle",
+  "ingress": true,
+  "ingress_port": 8000,
+  "boot": "auto",
+  "options": {
+  },
+  "schema": {
+  },
+  "ports": {
+    "8000/tcp": null
+  },
+  "ports_description": {
+    "8000/tcp": "Web interface (optional)"
+  }
+}
