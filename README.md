@@ -1,2 +1,2 @@
 # addon-babybuddy
-BabyBuddy, wrapped into a Home Assistant addon
+[BabyBuddy](https://github.com/babybuddy/babybuddy), wrapped into a Home Assistant addon
