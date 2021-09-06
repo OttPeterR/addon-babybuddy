@@ -6,8 +6,10 @@
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "startup": "application",
   "panel_icon": "hass:baby-bottle",
-  "ingress": true,
+  "ingress": false,
   "ingress_port": 8000,
+  "ingress_stream": true,
+  "panel_admin": false,
   "boot": "auto",
   "options": {
   },
