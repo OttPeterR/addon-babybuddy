@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv bashio
-
+# wait for babybuddy to be running on port 8000
 bashio::net.wait_for 8000
 
 bashio::log.info "Starting NGinx..."
