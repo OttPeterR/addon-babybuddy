@@ -5,27 +5,19 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# hadolint ignore=DL3003
 RUN \
   echo "**** install build packages ****" && \
-  apk add --no-cache --virtual .build-dependencies \
-    build-base=0.5-r2 \
+  apk add --no-cache --virtual=build-dependencies \
+    build-base \
     curl \
     jpeg-dev \
     libffi-dev \
     postgresql-dev \
-    python3-dev=3.9.5-r1 \
-    zlib-dev \
-    nginx=1.20.1-r3
+    python3-dev \
+    zlib-dev
 
-# add Nginx
-RUN \
-    rm -f -r \
-        /etc/nginx \
-    \
-    && mkdir -p /var/log/nginx \
-    && touch /var/log/nginx/error.log
-
-
+# hadolint ignore=DL3003
 RUN \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
@@ -33,7 +25,8 @@ RUN \
     libffi \
     libpq \
     py3-pip \
-    python3
+    python3 \
+    nginx
 
 RUN \
   echo "**** downloading babybuddy ****" && \
@@ -55,10 +48,31 @@ RUN \
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
-    .build-dependencies && \
+    build-dependencies && \
   rm -rf \
+    /etc/nginx \
+    /opt/build \
+    /opt/index.html \
+    /opt/package.sh \
+    /opt/src \
+    /opt/static \
+    /opt/stylesheets \
+    /opt/.[!.]* \
+    /opt/*.md \
+    /opt/nodemon.json \
+    /opt/kustomization.yaml \
+    /opt/kubernetes \
+    /opt/docker \
+    /opt/docs \
+    /root/.cache \
+    /root/.config \
+    /root/.npmrc \
+    /root/.node-gyp \
+    /root/.npm \
+    /tmp/.[!.]* \
     /tmp/* \
-    /root/.cache
+    /usr/lib/node_modules \
+    /usr/local/share/.cache
 
 COPY root/ /
 
