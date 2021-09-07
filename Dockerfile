@@ -18,7 +18,6 @@ RUN \
     nginx=1.20.1-r3
 
 # add Nginx
-# hadolint ignore=DL3009
 RUN \
     rm -f -r \
         /etc/nginx \
@@ -40,7 +39,7 @@ RUN \
   echo "**** downloading babybuddy ****" && \
   curl -o \
     /tmp/babybuddy.tar.gz -L \
-    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.8.2.tar.gz" && \
+    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.8.3.tar.gz" && \
   mkdir -p /app/babybuddy && \
   tar xf \
     /tmp/babybuddy.tar.gz -C \
