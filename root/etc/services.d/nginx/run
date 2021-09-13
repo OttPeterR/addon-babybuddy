@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv bashio
-bashio::log.info "NGINX waiting on babybuddy at port 8889"
+bashio::log.info "NGINX waiting on babybuddy..."
 bashio::net.wait_for 8000
 
 bashio::log.info "Starting NGinx..."
