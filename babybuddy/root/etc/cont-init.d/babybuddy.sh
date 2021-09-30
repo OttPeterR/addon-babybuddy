@@ -2,8 +2,14 @@
 
 mkdir -p /config/{data,media}
 rm -rf /app/babybuddy/{data,media}
-ln -s /config/data /app/babybuddy/data
-ln -s /config/media /app/babybuddy/media
+#ln -s /config/data /app/babybuddy/data
+#ln -s /config/media /app/babybuddy/media
+
+mkdir -p /data/{data,media}
+ln -s /data/data /config/data
+ln -s /data/data /app/babybuddy/data
+ln -s /data/media /config/media
+ln -s /data/media /app/babybuddy/media
 
 cd /app/babybuddy
 if [ ! -f "/config/.secretkey" ]; then
