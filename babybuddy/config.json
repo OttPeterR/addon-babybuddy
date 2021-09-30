@@ -1,7 +1,7 @@
 {
-  "name": "Baby Buddy",
-  "version": "0.0.1",
-  "slug": "baby_buddy",
+  "name": "Baby Buddy (dev)",
+  "version": "1.9.0",
+  "slug": "baby_buddy_dev",
   "description": "Helps caregivers track sleep, feedings, diaper changes, tummy time and more to learn about and predict baby's needs without (as much) guess work.",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "startup": "application",
