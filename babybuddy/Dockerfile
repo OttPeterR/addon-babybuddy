@@ -1,5 +1,5 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.0.0
-#hadolint ignore=DL3006
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:10.1.0
+# hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
 # Set shell
