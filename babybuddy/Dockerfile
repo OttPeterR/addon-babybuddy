@@ -13,6 +13,8 @@ RUN \
     curl \
     jpeg-dev \
     libffi-dev \
+    libxml2-dev \
+    libxslt-dev \
     postgresql-dev \
     python3-dev \
     zlib-dev
@@ -24,6 +26,9 @@ RUN \
     jpeg \
     libffi \
     libpq \
+    libxml2 \
+    libxslt \
+    py3-mysqlclient \
     py3-pip \
     python3 \
     nginx
