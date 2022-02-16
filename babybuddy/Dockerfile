@@ -37,7 +37,7 @@ RUN \
   echo "**** downloading babybuddy ****" && \
   curl -o \
     /tmp/babybuddy.tar.gz -L \
-    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.9.3.tar.gz" && \
+    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.10.0.tar.gz" && \
   mkdir -p /app/babybuddy && \
   tar xf \
     /tmp/babybuddy.tar.gz -C \
