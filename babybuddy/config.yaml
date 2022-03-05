@@ -1,0 +1,27 @@
+---
+name: Baby Buddy
+version: dev
+homeassistant: 2021.3.0
+slug: baby_buddy
+description: Track sleep, feedings, diaper changes, tummy time and more!
+url: https://github.com/OttPeterR/addon-babybuddy
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+init: true
+startup: application
+panel_icon: hass:baby-bottle
+ingress: true
+ingress_port: 1337
+ingress_stream: false
+panel_admin: false
+boot: auto
+options:
+  CSRF_TRUSTED_ORIGINS: ""
+schema: 
+  CSRF_TRUSTED_ORIGINS: str
+ports:
+ 8000/tcp: null
