@@ -1,7 +1,8 @@
-#!/usr/bin/execlineb -S0
+#!/command/with-contenv bashio
 
-if { s6-test ${1} -ne 0 }
-if { s6-test ${1} -ne 256 }
+if [[ "${1}" -ne 0 ]] && [[ "${1}" -ne 256 ]]; then
+  bashio::log.warning "BabyBuddy crashed, halting add-on"
+  /run/s6/basedir/bin/halt
+fi
 
-s6-svscanctl -t /var/run/s6/services
-
+bashio::log.info "BabyBuddy stoped, restarting..."

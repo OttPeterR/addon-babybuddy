@@ -1,5 +1,8 @@
-#!/usr/bin/execlineb -S0
-if -n { s6-test $# -ne 0 }
-if -n { s6-test ${1} -eq 256 }
+#!/command/with-contenv bashio
 
-s6-svscanctl -t /var/run/s6/services
+if [[ "${1}" -ne 0 ]] && [[ "${1}" -ne 256 ]]; then
+  bashio::log.warning "nginx crashed, halting add-on"
+  /run/s6/basedir/bin/halt
+fi
+
+bashio::log.info "nginx stoped, restarting..."

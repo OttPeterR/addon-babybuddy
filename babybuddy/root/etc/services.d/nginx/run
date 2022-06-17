@@ -1,4 +1,5 @@
-#!/usr/bin/with-contenv bashio
+#!/command/with-contenv bashio
+
 bashio::log.info "NGINX waiting on babybuddy..."
 bashio::net.wait_for 8000
 

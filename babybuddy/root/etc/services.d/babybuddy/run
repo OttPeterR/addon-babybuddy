@@ -1,6 +1,9 @@
-#!/usr/bin/with-contenv bashio
+#!/command/with-contenv bashio
+#
+
 cd /app/babybuddy || (echo "/app/babybuddy does not exist, exiting..." & exit)
 
+bashio::log.info "Setting env vars..."
 export \
     DJANGO_SETTINGS_MODULE="babybuddy.settings.base" \
     ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
@@ -10,6 +13,8 @@ export \
 
 export CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS")
 
+
+bashio::log.info "Launching BabyBuddy"
 exec \
     s6-setuidgid root gunicorn babybuddy.wsgi -b :8000 --log-level=info \
         --worker-tmp-dir=/dev/shm --log-file=- \
