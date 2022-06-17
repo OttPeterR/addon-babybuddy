@@ -1,4 +1,4 @@
-#!/command/with-contenv bash
+#!/command/with-contenv bashio
 #
 
 cd /app/babybuddy || (echo "/app/babybuddy does not exist, exiting..." & exit)
