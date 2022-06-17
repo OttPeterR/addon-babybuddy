@@ -1,6 +1,8 @@
-# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:12.0.0
+# hadolint ignore=DL3006
 FROM $BUILD_FROM
+
+VOLUME ["/run"]
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -37,7 +39,7 @@ RUN \
   echo "**** downloading babybuddy ****" && \
   curl -o \
     /tmp/babybuddy.tar.gz -L \
-    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.10.2.tar.gz" && \
+    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.11.1.tar.gz" && \
   mkdir -p /app/babybuddy && \
   tar xf \
     /tmp/babybuddy.tar.gz -C \
@@ -80,15 +82,6 @@ RUN \
     /usr/local/share/.cache
 
 COPY root/ /
-
-# Build arguments
-#ARG BUILD_ARCH
-#ARG BUILD_DATE
-#ARG BUILD_DESCRIPTION
-#ARG BUILD_NAME
-#ARG BUILD_REF
-#ARG BUILD_REPOSITORY
-#ARG BUILD_VERSION
 
 # Labels
 LABEL \
