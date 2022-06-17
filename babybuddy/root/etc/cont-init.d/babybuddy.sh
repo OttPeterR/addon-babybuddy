@@ -10,6 +10,7 @@ ln -s /data/data /config/data
 ln -s /data/data /app/babybuddy/data
 ln -s /data/media /config/media
 ln -s /data/media /app/babybuddy/media
+#TODO: need to properly link  /config/.secretkey
 
 cd /app/babybuddy
 if [ ! -f "/config/.secretkey" ]; then
