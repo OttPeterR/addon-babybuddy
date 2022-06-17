@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 mkdir -p /config/{data,media}
 rm -rf /app/babybuddy/{data,media}
