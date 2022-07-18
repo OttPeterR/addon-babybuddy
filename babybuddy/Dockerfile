@@ -1,6 +1,6 @@
 ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:12.0.0
 # hadolint ignore=DL3006
-FROM $BUILD_FROM
+FROM ${BUILD_FROM}
 
 VOLUME ["/run"]
 
@@ -83,9 +83,13 @@ RUN \
 
 COPY root/ /
 
+# Build arguments
+ARG BUILD_VERSION
+
 # Labels
 LABEL \
     io.hass.name="${BUILD_NAME}" \
     io.hass.description="${BUILD_DESCRIPTION}" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
+    io.hass.version=${BUILD_VERSION}
