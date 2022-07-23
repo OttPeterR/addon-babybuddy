@@ -1,7 +1,7 @@
 #!/command/with-contenv bashio
 #
 
-cd /app/babybuddy || (echo "/app/babybuddy does not exist, exiting..." & exit)
+cd /app/babybuddy || bashio.exit.nok 'Failed cd, /app/babybuddy does not exist, exiting...'
 
 export \
     DJANGO_SETTINGS_MODULE="babybuddy.settings.base" \
@@ -11,7 +11,6 @@ export \
     SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
 
 export CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS")
-
 
 exec \
     s6-setuidgid root gunicorn babybuddy.wsgi -b :8000 --log-level=info \
