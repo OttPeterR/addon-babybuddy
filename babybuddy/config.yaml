@@ -22,4 +22,6 @@ options:
 schema: 
   CSRF_TRUSTED_ORIGINS: str
 ports:
- 8000/tcp: null
+  8000/tcp: null
+ports_description:
+  8000/tcp: Web interface (Not required for Ingress)
