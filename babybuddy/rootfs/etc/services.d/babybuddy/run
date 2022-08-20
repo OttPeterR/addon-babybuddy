@@ -4,7 +4,7 @@
 declare -a options
 
 options+=(-b :8000)
-options+=(--log-level="$(bashio::config 'log-level')")
+options+=(--log-level="$(bashio::config 'log_level')")
 options+=(--worker-tmp-dir=/dev/shm)
 options+=(--log-file=-)
 options+=(--workers=2)
