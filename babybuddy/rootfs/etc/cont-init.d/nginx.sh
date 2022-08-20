@@ -1,7 +1,5 @@
 #!/command/with-contenv bashio
 
-declare admin_port
-
 # Generate Ingress configuration
 bashio::var.json \
     interface "$(bashio::addon.ip_address)" \
