@@ -10,7 +10,8 @@ export \
     DEBUG="${DEBUG:-False}" \
     SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
 
-export CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS")
+export \
+    CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS")
 
 exec \
     s6-setuidgid root gunicorn babybuddy.wsgi -b :8000 --log-level=info \
