@@ -1,6 +1,16 @@
 #!/command/with-contenv bashio
 #
 
+declare -a options
+
+options+=(-b :8000)
+options+=(--log-level=info)
+options+=(--worker-tmp-dir=/dev/shm)
+options+=(--log-file=-)
+options+=(--workers=2)
+options+=(--threads=4)
+options+=(--worker-class=gthread)
+
 cd /app/babybuddy || bashio.exit.nok 'Failed cd, /app/babybuddy does not exist, exiting...'
 
 export \
@@ -14,6 +24,4 @@ export \
     CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS")
 
 exec \
-    s6-setuidgid root gunicorn babybuddy.wsgi -b :8000 --log-level=info \
-        --worker-tmp-dir=/dev/shm --log-file=- \
-        --workers=2 --threads=4 --worker-class=gthread \
+    s6-setuidgid root gunicorn babybuddy.wsgi "${options[@]}"
