@@ -19,7 +19,11 @@ ingress_stream: false
 panel_admin: false
 options:
   CSRF_TRUSTED_ORIGINS: ""
+  log_level: info
 schema: 
   CSRF_TRUSTED_ORIGINS: str
+  log_level: list(debug|info|warning|error|critical)
 ports:
- 8000/tcp: null
+  8000/tcp: null
+ports_description:
+  8000/tcp: Web interface (Not required for Ingress)

@@ -1,8 +1,8 @@
 #!/command/with-contenv bashio
 
 if [[ "${1}" -ne 0 ]] && [[ "${1}" -ne 256 ]]; then
-  bashio::log.warning "nginx crashed, halting add-on"
+  bashio::log.warning "NGINX crashed, halting add-on"
   /run/s6/basedir/bin/halt
 fi
 
-bashio::log.info "nginx stopped, restarting..."
+bashio::log.info "NGINX stopped, restarting..."

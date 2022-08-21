@@ -11,4 +11,3 @@ server {
         proxy_pass http://backend;
     }
 }
-

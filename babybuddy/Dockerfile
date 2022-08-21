@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:12.0.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/base/amd64:12.2.3
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -81,7 +81,7 @@ RUN \
     /usr/lib/node_modules \
     /usr/local/share/.cache
 
-COPY root/ /
+COPY rootfs /
 
 # Build arguments
 ARG BUILD_VERSION
