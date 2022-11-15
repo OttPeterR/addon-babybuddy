@@ -1,9 +1,12 @@
-# addon-babybuddy
-BabyBuddy, wrapped into a Home Assistant addon!
+# Baby Buddy - Home Assistant Addon
+Run Baby Buddy on Home Assistant!
 
-Source for Baby Buddy is here: https://github.com/babybuddy/babybuddy
+Once you have this running here are a few more things that may help:
+- [Baby Buddy Integration](https://github.com/jcgoette/baby_buddy_homeassistant)
+  - get BB data as sensors and entities in HA so you can automate! You can install this from HACS.
+- [Baby Buddy Source Code](https://github.com/babybuddy/babybuddy)
+  - this is the actual code, the repo you are currently viewing only wraps this into an addon
 
-This repo just takes the code from baby buddy and puts it in addon form.
 
 ## Accessing Baby Buddy
 Currently ingress does not work and will show an error. (This will be fixed at some point.) Access BB by setting a port in the addon's configuration page through Home Assistant. Then go to `http://your-home-assistant.local:PORT`.
