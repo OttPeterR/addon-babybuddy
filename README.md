@@ -5,6 +5,10 @@ Source for Baby Buddy is here: https://github.com/babybuddy/babybuddy
 
 This repo just takes the code from baby buddy and puts it in addon form.
 
+## Accessing Baby Buddy
+Currently ingress does not work and will show an error. (This will be fixed at some point.) Access BB by setting a port in the addon's configuration page through Home Assistant. Then go to `http://your-home-assistant.local:PORT`.
+
+
 ## Installation (basic)
 Add this addon-repo to your home assistant by going to to **Settings** -> **Add-ons** -> **Add-on Store** and add this URL as an additional repository: 
 ```txt
