@@ -1,6 +1,6 @@
 ---
 name: Baby Buddy
-version: 1.13.2.4
+version: 1.13.2.5
 homeassistant: 2022.7.7
 slug: baby_buddy
 description: Track sleep, feedings, diaper changes, tummy time and more!
@@ -19,9 +19,13 @@ ingress_stream: false
 panel_admin: false
 options:
   CSRF_TRUSTED_ORIGINS: ""
+  NAP_START_MIN: "06:00"
+  NAP_START_MAX: "18:00"
   log_level: info
 schema: 
   CSRF_TRUSTED_ORIGINS: str
+  NAP_START_MIN: str
+  NAP_START_MAX: str
   log_level: list(debug|info|warning|error|critical)
 ports:
   8000/tcp: null

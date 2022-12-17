@@ -21,7 +21,10 @@ export \
     SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
 
 export \
-    CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS")
+    CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS") \
+    NAP_START_MIN=$(bashio::config "NAP_START_MIN") \
+    NAP_START_MAX=$(bashio::config "NAP_START_MAX")
 
 exec \
     s6-setuidgid root gunicorn babybuddy.wsgi "${options[@]}"
+
