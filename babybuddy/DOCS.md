@@ -12,4 +12,9 @@ If you are hosting your baby buddy via another domain (such as babybuddy.mydomai
 Access baby buddy through this port. (ex: hassio.local:8889 when set to 8889)
 
 ## Ingress
-Ingress does not work at the moment, however this is under development and should come to a release in the future.
+
+### Option: `INGRESS_USER` (default: blank)
+
+Automatically log in as this user using HomeAssistant ingress (e.g. `admin`) if set. 
+
+**WARNING** this enables header based authentication so do not use in conjunction with publicly exposing the network port above.

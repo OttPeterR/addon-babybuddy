@@ -22,12 +22,14 @@ options:
   NAP_START_MIN: "06:00"
   NAP_START_MAX: "18:00"
   USE_24_HOUR_TIME_FORMAT: False
+  INGRESS_USER: ""  
   log_level: info
 schema: 
   CSRF_TRUSTED_ORIGINS: str
   NAP_START_MIN: str
   NAP_START_MAX: str
   USE_24_HOUR_TIME_FORMAT: bool
+  INGRESS_USER: str  
   log_level: list(debug|info|warning|error|critical)
 ports:
   8000/tcp: null
