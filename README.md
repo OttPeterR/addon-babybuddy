@@ -9,7 +9,9 @@ Once you have this running here are a few more things that may help:
 
 
 ## Accessing Baby Buddy
-Currently ingress does not work and will show an error. (This will be fixed at some point.) Access BB by setting a port in the addon's configuration page through Home Assistant. Then go to `http://your-home-assistant.local:PORT`.
+Access BB though ingress in HA as you normally would. If you would like to skip the login process, there is a way to auot-login, but please be aware of the security implications. [See more in the docs](https://github.com/OttPeterR/addon-babybuddy/blob/main/babybuddy/DOCS.md)
+
+Alternatively if you configure a port in the addon configuration, you can access through `http://your-home-assistant.local:PORT`.
 
 
 ## Installation (basic)
