@@ -9,9 +9,9 @@ Once you have this running here are a few more things that may help:
 
 
 ## Accessing Baby Buddy
-Access BB though ingress in HA as you normally would. If you would like to skip the login process, there is a way to auot-login, but please be aware of the security implications. [See more in the docs](https://github.com/OttPeterR/addon-babybuddy/blob/main/babybuddy/DOCS.md)
+Access BB though ingress in HA as you normally would. If you would like to skip the login process, there is a way to auto-login, but please be aware of the security implications. [See more in the docs](https://github.com/OttPeterR/addon-babybuddy/blob/main/babybuddy/DOCS.md)
 
-Alternatively if you configure a port in the addon configuration, you can access through `http://your-home-assistant.local:PORT`.
+Alternatively if you configure a port in the addon configuration, you can access through `http://your-home-assistant.local:PORT`. This is what you must do if you want to host BB with another name (such as mydomain.duckdns.org/babybuddy)
 
 
 ## Installation (basic)
