@@ -9,7 +9,11 @@ Run Baby Buddy on Home Assistant!
 
 
 ## Accessing Baby Buddy
-You can access BB either though the Home Assistant Ingress, to do this enable the `Show in sidebar` toggle in the addon's `Info` section. Or through a port, which must be set in the addon's `Configuration` section. If you get an error about `CSRF_TRUSTED_ORIGINS`, those domains should be added in the `Configuration` section as well (multiple can be added with commas and no spaces)
+Access BB though ingress in HA as you normally would. If you would like to skip the login process, there is a way to auto-login, but please be aware of the security implications. [See more in the docs](https://github.com/OttPeterR/addon-babybuddy/blob/main/babybuddy/DOCS.md)
+
+Alternatively if you configure a port in the addon configuration, you can access through `http://your-home-assistant.local:PORT`. This is what you must do if you want to host BB with another name (such as mydomain.duckdns.org/babybuddy)
+
+If you come across a `CSRF_TRUSTED_ORIGINS` error, you can add that domain in the addon's `Configuration` page. Multiple domains can be added with a comma and no space to separate them.
 
 ## Home Assistant Integration
 This addon only runs Baby Buddy, if you would like to see some of the data as sensors in Home Asssitant to crete automations, you also need [the integration](https://github.com/jcgoette/baby_buddy_homeassistant) that pulls data from the addon.
