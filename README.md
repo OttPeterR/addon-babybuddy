@@ -1,16 +1,18 @@
 # Baby Buddy - Home Assistant Addon
 Run Baby Buddy on Home Assistant!
 
-Once you have this running here are a few more things that may help:
+## Other Important Repos
 - [Baby Buddy Integration](https://github.com/jcgoette/baby_buddy_homeassistant)
   - get BB data as sensors and entities in HA so you can automate! You can install this from HACS.
 - [Baby Buddy Source Code](https://github.com/babybuddy/babybuddy)
-  - this is the actual code, the repo you are currently viewing only wraps this into an addon
+  - application code is located in that repo, the repo you are currently viewing simply takes that code and wraps it up into a Home Assistant addon
 
 
 ## Accessing Baby Buddy
-Currently ingress does not work and will show an error. (This will be fixed at some point.) Access BB by setting a port in the addon's configuration page through Home Assistant. Then go to `http://your-home-assistant.local:PORT`.
+You can access BB either though the Home Assistant Ingress, to do this enable the `Show in sidebar` toggle in the addon's `Info` section. Or through a port, which must be set in the addon's `Configuration` section. If you get an error about `CSRF_TRUSTED_ORIGINS`, those domains should be added in the `Configuration` section as well (multiple can be added with commas and no spaces)
 
+## Home Assistant Integration
+This addon only runs Baby Buddy, if you would like to see some of the data as sensors in Home Asssitant to crete automations, you also need [the integration](https://github.com/jcgoette/baby_buddy_homeassistant) that pulls data from the addon.
 
 ## Installation (basic)
 Add this addon-repo to your home assistant by going to to **Settings** -> **Add-ons** -> **Add-on Store** and add this URL as an additional repository: 
@@ -18,7 +20,9 @@ Add this addon-repo to your home assistant by going to to **Settings** -> **Add-
 https://github.com/OttPeterR/addon-babybuddy
 ```
 
-### Additional setup for HTTPS
+### Additional setup for HTTPS via NGINX (using your own domain)
+The standard way of accessing Baby Buddy is through Home Assistant Ingress, so under normal use these instructions won't be needed.
+
 Follow these additional instructions if your Home Assistant instance is set up so that it can only be accessed via HTTPS (e.g., using the [DuckDNS add-on](https://github.com/home-assistant/addons/tree/master/duckdns). For example, you access your Home Assistant instance at `https://example.duckdns.org:8123`.
 
 1. Install the [Nginx Proxy Manager](https://github.com/hassio-addons/addon-nginx-proxy-manager) available from the Home Assistant Add-on Store. Closely follow the [installation instructions](https://github.com/hassio-addons/addon-nginx-proxy-manager/blob/main/proxy-manager/DOCS.md). We will use this add-on the set up a reverse proxy so that you can access BabyBuddy via HTTPS externally. 
@@ -29,6 +33,6 @@ Follow these additional instructions if your Home Assistant instance is set up s
 
 4. On the Nginx Proxy Manager admin dashboard, navigate to **Hosts** -> **Proxy Hosts** -> **Add Proxy Host**. Enter the domain you want to use to access Baby Budy (e.g., `babybuddy.example.duckdns.org`). Use `http` as the scheme (i.e., how Baby Buddy is accessed locally). Enter the Home Assistant local IP address as the Forward IP (e.g. `192.168.1.100`). Enter `8000` as the forward port (or whatever you have set up in the Baby Buddy add-on configuration as the port.) Under the **SSL** tab, select ***Request a new SSL certificate*** and check ***Force SSL*** and agree. 
 
-5. In the Baby Budy add-on configuration, under `CSRF_TRUSTED_ORIGINS` enter your domain for Baby Buddy (e.g., `https://babybuddy.example.duckdns.org`). 
+5. In the Baby Budy add-on configuration, under `CSRF_TRUSTED_ORIGINS` enter your domain for Baby Buddy (e.g., `https://babybuddy.example.duckdns.org`). If you want to use multiple domains, enter them with a comma and no space (eg `http://baby.example.com,https://babybuddy.mydomain.com`) 
 
 You should now be able to acess Baby Buddy via your domain (e.g., [https://babybuddy.example.duckdns.org]). You may want to use a Markdown card or a Button set up to your domain. 
