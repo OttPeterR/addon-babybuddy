@@ -16,4 +16,4 @@ jobs:
             --test \
             --all \
             --target babybuddy \
-            --docker-hub OttPeterR
+            --docker-hub ottpeterr/addon-babybuddy
