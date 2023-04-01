@@ -22,4 +22,4 @@ jobs:
           args: |
             --all \
             --target babybuddy \
-            --docker-hub addon-babybuddy
+            --docker-hub ottpeterr
