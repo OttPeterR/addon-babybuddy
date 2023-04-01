@@ -16,10 +16,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Publish
+      - name: Publish to DockerHub
         uses: home-assistant/builder@master
         with:
           args: |
             --all \
             --target babybuddy \
-            --docker-hub user-name-or-space-name
+            --docker-hub OttPeterR

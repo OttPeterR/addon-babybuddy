@@ -1,6 +1,6 @@
 name: "Test Build"
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   build:
@@ -9,11 +9,11 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
-      - name: Test build
+      - name: Build container
         uses: home-assistant/builder@master
         with:
           args: |
             --test \
             --all \
             --target babybuddy \
-            --docker-hub user-name-or-space-name
+            --docker-hub OttPeterR
