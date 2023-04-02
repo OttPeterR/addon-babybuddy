@@ -9,6 +9,11 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build container
         uses: home-assistant/builder@master
         with:
