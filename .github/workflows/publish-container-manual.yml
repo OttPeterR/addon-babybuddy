@@ -1,8 +1,6 @@
-name: "Publish Container"
+name: "Publish Container [Manual]"
 
-on:
-  release:
-    types: [published]
+on: [workflow_dispatch]
 
 jobs:
   publish:
