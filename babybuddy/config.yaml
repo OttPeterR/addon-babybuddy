@@ -3,6 +3,7 @@ name: Baby Buddy
 version: 1.16.0
 homeassistant: 2022.7.7
 slug: baby_buddy
+image: "ottpeterr/image-{arch}-babybuddy"
 description: Track sleep, feedings, diaper changes, tummy time and more!
 url: https://github.com/OttPeterR/addon-babybuddy
 arch:
