@@ -1,20 +1,18 @@
-FROM ghcr.io/linuxserver/baseimage-alpine-nginx:3.17
-
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:13.2.2
 # hadolint ignore=DL3006
-ARG BABYBUDDY_VERSION=1.16.0
+FROM ${BUILD_FROM}
 
-# set version label
-ARG BUILD_DATE
-ARG VERSION
-ARG BABYBUDDY_VERSION=1.16.0
-LABEL build_version="Build-date:- ${BUILD_DATE}"
+VOLUME ["/run"]
 
-ENV S6_STAGE2_HOOK="/init-hook"
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# hadolint ignore=DL3003
 RUN \
   echo "**** install build packages ****" && \
   apk add --no-cache --virtual=build-dependencies \
   build-base \
+  curl \
   jpeg-dev \
   libffi-dev \
   libxml2-dev \
@@ -22,6 +20,8 @@ RUN \
   postgresql-dev \
   python3-dev \
   zlib-dev
+
+# hadolint ignore=DL3003
 RUN \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
@@ -31,37 +31,58 @@ RUN \
   libxml2 \
   libxslt \
   py3-mysqlclient \
-  python3
+  py3-pip \
+  python3 \
+  nginx
+
 RUN \
-  echo "**** install babybuddy ****" && \
-  if [ -z ${BABYBUDDY_VERSION+x} ]; then \
-  BABYBUDDY_VERSION=$(curl -sX GET "https://api.github.com/repos/babybuddy/babybuddy/releases/latest" \
-  | awk '/tag_name/{print $4;exit}' FS='[""]'); \
-  fi && \
+  echo "**** downloading babybuddy ****" && \
   curl -o \
   /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/${BABYBUDDY_VERSION}.tar.gz" && \
-  mkdir -p /app/www/public && \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.16.0.tar.gz" && \
+  mkdir -p /app/babybuddy && \
   tar xf \
   /tmp/babybuddy.tar.gz -C \
-  /app/www/public --strip-components=1 && \
-  cd /app/www/public && \
-  python3 -m ensurepip && \
+  /app/babybuddy --strip-components=1
+
+RUN \
+  echo "**** installing babybuddy ****" && \
+  cd /app/babybuddy && \
   pip3 install -U --no-cache-dir \
-  pip \
-  wheel && \
-  pip3 install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.17/  -r requirements.txt
+  pip && \
+  pip install -U --ignore-installed -r requirements.txt
+
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
   build-dependencies && \
   rm -rf \
+  /etc/nginx \
+  /opt/build \
+  /opt/index.html \
+  /opt/package.sh \
+  /opt/src \
+  /opt/static \
+  /opt/stylesheets \
+  /opt/.[!.]* \
+  /opt/*.md \
+  /opt/nodemon.json \
+  /opt/kustomization.yaml \
+  /opt/kubernetes \
+  /opt/docker \
+  /opt/docs \
+  /root/.cache \
+  /root/.config \
+  /root/.npmrc \
+  /root/.node-gyp \
+  /root/.npm \
+  /tmp/.[!.]* \
   /tmp/* \
-  $HOME/.cache \
-  $HOME/.cargo
+  /usr/lib/node_modules \
+  /usr/local/share/.cache
 
-# copy local files
-COPY root/ /
+COPY root /
+
 # Build arguments
 ARG BUILD_VERSION
 

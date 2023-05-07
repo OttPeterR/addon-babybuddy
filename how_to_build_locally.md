@@ -12,3 +12,5 @@ docker run \
 		--all \
 		-t /data
 ```
+
+when updating versions, make sure to bump the build.yaml as well
