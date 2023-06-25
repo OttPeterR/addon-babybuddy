@@ -14,7 +14,7 @@ options+=(--worker-class=gthread)
 cd /app/babybuddy || bashio.exit.nok 'Failed cd, /app/babybuddy does not exist, exiting...'
 
 export \
-    DJANGO_SETTINGS_MODULE="babybuddy.settings.base" \
+    DJANGO_SETTINGS_MODULE="babybuddy.settings.homeassistant" \
     ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \

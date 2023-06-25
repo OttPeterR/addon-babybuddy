@@ -19,13 +19,13 @@ if [ ! -f "/config/.secretkey" ]; then
         | tr -d '\n' > /config/.secretkey
 fi
 export \
-    DJANGO_SETTINGS_MODULE="babybuddy.settings.base" \
+    DJANGO_SETTINGS_MODULE="babybuddy.settings.homeassistant" \
     ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \
     SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
-python3 manage.py migrate --noinput 
 python3 manage.py createcachetable
+python3 manage.py migrate --noinput 
 
 chown -R root:root \
     /config
