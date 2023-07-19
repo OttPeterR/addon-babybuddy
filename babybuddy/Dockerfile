@@ -1,3 +1,4 @@
+# match the below with build.yaml
 ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
@@ -17,6 +18,7 @@ RUN \
   libffi-dev \
   libxml2-dev \
   libxslt-dev \
+  mariadb-dev \
   postgresql-dev \
   python3-dev \
   zlib-dev
@@ -30,56 +32,37 @@ RUN \
   libpq \
   libxml2 \
   libxslt \
-  py3-mysqlclient \
-  py3-pip \
-  python3 \
-  nginx
+  mariadb-connector-c \
+  python3
 
 RUN \
-  echo "**** downloading babybuddy ****" && \
+  echo "**** downloading ****" \
   curl -o \
   /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.0.0.tar.gz" && \
-  mkdir -p /app/babybuddy && \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/2.0.2.tar.gz"
+RUN \
+  echo "**** installing ****" \
+  mkdir -p /app/www/public && \
   tar xf \
   /tmp/babybuddy.tar.gz -C \
-  /app/babybuddy --strip-components=1
-
-RUN \
-  echo "**** installing babybuddy ****" && \
-  cd /app/babybuddy && \
-  pip3 install -U --no-cache-dir \
-  pip && \
-  pip install -U --ignore-installed -r requirements.txt
-
+  /app/www/public --strip-components=1 && \
+  cd /app/www/public && \
+  python3 -m venv /lsiopy && \
+  pip install -U --no-cache-dir \
+  pip \
+  wheel && \
+  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.18/ \
+  -r requirements.txt && \
+  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.18/ \
+  mysqlclient
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
   build-dependencies && \
   rm -rf \
-  /etc/nginx \
-  /opt/build \
-  /opt/index.html \
-  /opt/package.sh \
-  /opt/src \
-  /opt/static \
-  /opt/stylesheets \
-  /opt/.[!.]* \
-  /opt/*.md \
-  /opt/nodemon.json \
-  /opt/kustomization.yaml \
-  /opt/kubernetes \
-  /opt/docker \
-  /opt/docs \
-  /root/.cache \
-  /root/.config \
-  /root/.npmrc \
-  /root/.node-gyp \
-  /root/.npm \
-  /tmp/.[!.]* \
   /tmp/* \
-  /usr/lib/node_modules \
-  /usr/local/share/.cache
+  $HOME/.cache \
+  $HOME/.cargo
 
 COPY root /
 
