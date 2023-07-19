@@ -23,9 +23,10 @@ export \
     ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \
+    ENABLE_HOME_ASSISTANT_SUPPORT=true \
     SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
-python3 manage.py migrate --noinput 
 python3 manage.py createcachetable
+python3 manage.py migrate --noinput 
 
 chown -R root:root \
     /config

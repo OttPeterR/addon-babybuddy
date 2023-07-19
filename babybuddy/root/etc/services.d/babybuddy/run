@@ -18,6 +18,7 @@ export \
     ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \
+    ENABLE_HOME_ASSISTANT_SUPPORT=true \
     SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
 
 export \
