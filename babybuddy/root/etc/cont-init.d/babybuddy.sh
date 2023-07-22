@@ -1,4 +1,5 @@
 #!/command/with-contenv bashio
+# shellcheck shell=bash
 
 mkdir -p /config/{data,media}
 rm -rf /app/babybuddy/{data,media}

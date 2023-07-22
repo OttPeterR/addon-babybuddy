@@ -1,5 +1,5 @@
 # match the below with build.yaml
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.3
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.5
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
