@@ -36,16 +36,18 @@ RUN \
   python3
 
 RUN \
-  echo "**** downloading ****" \
+  echo "**** downloading babybuddy ****" && \
   curl -o \
   /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/2.0.2.tar.gz"
-RUN \
-  echo "**** installing ****" \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.0.2.tar.gz" && \
+  echo "**** unzipping archive ****" && \
   mkdir -p /app/www/public && \
   tar xf \
   /tmp/babybuddy.tar.gz -C \
-  /app/www/public --strip-components=1 && \
+  /app/www/public --strip-components=1
+
+RUN \
+  echo "**** installing ****" \
   cd /app/www/public && \
   python3 -m venv /lsiopy && \
   pip install -U --no-cache-dir \
