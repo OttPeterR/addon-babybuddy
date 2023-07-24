@@ -1,4 +1,3 @@
-# match the below with build.yaml
 ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.5
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
@@ -7,6 +6,16 @@ VOLUME ["/run"]
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN \
+  echo "**** downloading babybuddy ****" && \
+  curl -o \
+  /tmp/babybuddy.tar.gz -L \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.0.2.tar.gz" && \
+  mkdir -p /app/babybuddy && \
+  tar xf \
+  /tmp/babybuddy.tar.gz -C \
+  /app/babybuddy --strip-components=1
 
 # hadolint ignore=DL3003
 RUN \
@@ -33,38 +42,46 @@ RUN \
   libxml2 \
   libxslt \
   mariadb-connector-c \
-  python3
+  py3-mysqlclient \
+  py3-pip \
+  python3 \
+  nginx
 
 RUN \
-  echo "**** downloading babybuddy ****" && \
-  curl -o \
-  /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.0.2.tar.gz" && \
-  echo "**** unzipping archive ****" && \
-  mkdir -p /app/www/public && \
-  tar xf \
-  /tmp/babybuddy.tar.gz -C \
-  /app/www/public --strip-components=1
+  echo "**** installing ****" && \
+  cd /app/babybuddy && \
+  pip3 install -U --no-cache-dir \
+  pip && \
+  pip install -U --ignore-installed -r requirements.txt
 
-RUN \
-  echo "**** installing ****" \
-  cd /app/www/public && \
-  python3 -m venv /lsiopy && \
-  pip install -U --no-cache-dir \
-  pip \
-  wheel && \
-  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.18/ \
-  -r requirements.txt && \
-  pip install -U --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.18/ \
-  mysqlclient
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
   build-dependencies && \
   rm -rf \
+  /etc/nginx \
+  /opt/build \
+  /opt/index.html \
+  /opt/package.sh \
+  /opt/src \
+  /opt/static \
+  /opt/stylesheets \
+  /opt/.[!.]* \
+  /opt/*.md \
+  /opt/nodemon.json \
+  /opt/kustomization.yaml \
+  /opt/kubernetes \
+  /opt/docker \
+  /opt/docs \
+  /root/.cache \
+  /root/.config \
+  /root/.npmrc \
+  /root/.node-gyp \
+  /root/.npm \
+  /tmp/.[!.]* \
   /tmp/* \
-  $HOME/.cache \
-  $HOME/.cargo
+  /usr/lib/node_modules \
+  /usr/local/share/.cache
 
 COPY root /
 
