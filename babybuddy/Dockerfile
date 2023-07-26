@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:13.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.5
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -6,6 +6,16 @@ VOLUME ["/run"]
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+RUN \
+  echo "**** downloading babybuddy ****" && \
+  curl -o \
+  /tmp/babybuddy.tar.gz -L \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.0.3.tar.gz" && \
+  mkdir -p /app/babybuddy && \
+  tar xf \
+  /tmp/babybuddy.tar.gz -C \
+  /app/babybuddy --strip-components=1
 
 # hadolint ignore=DL3003
 RUN \
@@ -17,6 +27,7 @@ RUN \
   libffi-dev \
   libxml2-dev \
   libxslt-dev \
+  mariadb-dev \
   postgresql-dev \
   python3-dev \
   zlib-dev
@@ -30,23 +41,14 @@ RUN \
   libpq \
   libxml2 \
   libxslt \
+  mariadb-connector-c \
   py3-mysqlclient \
   py3-pip \
   python3 \
   nginx
 
 RUN \
-  echo "**** downloading babybuddy ****" && \
-  curl -o \
-  /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v1.16.0.tar.gz" && \
-  mkdir -p /app/babybuddy && \
-  tar xf \
-  /tmp/babybuddy.tar.gz -C \
-  /app/babybuddy --strip-components=1
-
-RUN \
-  echo "**** installing babybuddy ****" && \
+  echo "**** installing ****" && \
   cd /app/babybuddy && \
   pip3 install -U --no-cache-dir \
   pip && \

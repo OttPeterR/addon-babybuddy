@@ -18,12 +18,11 @@ export \
     ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \
+    ENABLE_HOME_ASSISTANT_SUPPORT=true \
     SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
 
 export \
     CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS") \
-    NAP_START_MIN=$(bashio::config "NAP_START_MIN") \
-    NAP_START_MAX=$(bashio::config "NAP_START_MAX") \
     USE_24_HOUR_TIME_FORMAT=$(bashio::config "USE_24_HOUR_TIME_FORMAT")
 
 if bashio::config.has_value "INGRESS_USER"; then

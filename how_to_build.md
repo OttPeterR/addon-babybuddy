@@ -3,15 +3,16 @@ cd into the addon-babybuddy/babybuddy directory and run
 
 ```
 docker run \
-	--rm \
-	--privileged \
-	-v ~/.docker:/root/.docker \
-	-v /var/run/docker.sock:/var/run/docker.sock:ro \
-	-v "$(pwd)":/data \
-	homeassistant/amd64-builder \
-		--all \
-		-t /data
+  --rm \
+  --privileged \
+  -v ~/.docker:/root/.docker \
+  -v "$(pwd)":/data \
+  homeassistant/amd64-builder \
+  	--all \
+  	-t /data
 ```
+
+(switch --all for --amd64 or any single arch do just build one)
 
 when updating versions, make sure to bump the build.yaml as well
 

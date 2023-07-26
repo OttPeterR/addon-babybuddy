@@ -1,4 +1,5 @@
 #!/command/with-contenv bashio
+# shellcheck shell=bash
 
 mkdir -p /config/{data,media}
 rm -rf /app/babybuddy/{data,media}
@@ -12,7 +13,7 @@ ln -s /data/media /config/media
 ln -s /data/media /app/babybuddy/media
 #TODO: need to properly link  /config/.secretkey
 
-cd /app/babybuddy
+cd /app/babybuddy || exit
 if [ ! -f "/config/.secretkey" ]; then
     echo "**** No secret key found, generating one ****"
     python3 manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())' \
@@ -23,9 +24,9 @@ export \
     ALLOWED_HOSTS="${ALLOWED_HOSTS:-*}" \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \
-    SECRET_KEY="${SECRET_KEY:-`cat /config/.secretkey`}"
-python3 manage.py migrate --noinput 
+    SECRET_KEY="${SECRET_KEY:-$(cat /config/.secretkey)}"
 python3 manage.py createcachetable
+python3 manage.py migrate --noinput
 
 chown -R root:root \
     /config
