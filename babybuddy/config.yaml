@@ -20,12 +20,10 @@ ingress_stream: false
 panel_admin: false
 options:
   CSRF_TRUSTED_ORIGINS: ""
-  USE_24_HOUR_TIME_FORMAT: False
   INGRESS_USER: ""
   log_level: info
 schema:
   CSRF_TRUSTED_ORIGINS: str
-  USE_24_HOUR_TIME_FORMAT: bool
   INGRESS_USER: str
   log_level: list(debug|info|warning|error|critical)
 ports:
