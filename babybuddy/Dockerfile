@@ -84,7 +84,7 @@ RUN \
   /usr/lib/node_modules \
   /usr/local/share/.cache
 
-COPY root/ /
+COPY root /
 
 # Build arguments
 ARG BUILD_VERSION
