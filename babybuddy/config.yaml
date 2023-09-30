@@ -1,6 +1,6 @@
 ---
 name: Baby Buddy
-version: 2.0.4
+version: 2.0.4.1
 homeassistant: 2023.6.2
 slug: baby_buddy
 image: "ottpeterr/image-{arch}-babybuddy"
@@ -20,12 +20,10 @@ ingress_stream: false
 panel_admin: false
 options:
   CSRF_TRUSTED_ORIGINS: ""
-  USE_24_HOUR_TIME_FORMAT: False
   INGRESS_USER: ""
   log_level: info
 schema:
   CSRF_TRUSTED_ORIGINS: str
-  USE_24_HOUR_TIME_FORMAT: bool
   INGRESS_USER: str
   log_level: list(debug|info|warning|error|critical)
 ports:

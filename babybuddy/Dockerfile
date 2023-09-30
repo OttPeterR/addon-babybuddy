@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.7
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.1.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -20,6 +20,7 @@ RUN \
 # hadolint ignore=DL3003
 RUN \
   echo "**** install build packages ****" && \
+  apk add --no-cache rust cargo && \
   apk add --no-cache --virtual=build-dependencies \
   build-base \
   curl \
