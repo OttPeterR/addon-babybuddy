@@ -3,16 +3,11 @@ name: "Build Addon"
 on: [pull_request]
 
 jobs:
-  setup:
+  aarch64:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-  aarch64:
-    needs: [setup]
-    runs-on: ubuntu-latest
-    steps:
       - name: Build Container (aarch64)
         uses: home-assistant/builder@master
         with:
@@ -23,9 +18,10 @@ jobs:
             --docker-hub ottpeterr
 
   amd64:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Build Container (amd64)
         uses: home-assistant/builder@master
         with:
@@ -36,9 +32,10 @@ jobs:
             --docker-hub ottpeterr
 
   armhf:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Build Container (armhf)
         uses: home-assistant/builder@master
         with:
@@ -49,9 +46,10 @@ jobs:
             --docker-hub ottpeterr
 
   armv7:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Build Container (armv7)
         uses: home-assistant/builder@master
         with:
@@ -62,9 +60,10 @@ jobs:
             --docker-hub ottpeterr
 
   i386:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Build Container (i386)
         uses: home-assistant/builder@master
         with:

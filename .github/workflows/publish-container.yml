@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  setup:
+  aarch64:
     runs-on: ubuntu-latest
     steps:
       - name: DockerHub
@@ -15,11 +15,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout Code
         uses: actions/checkout@v3
-
-  aarch64:
-    needs: [setup]
-    runs-on: ubuntu-latest
-    steps:
       - name: Publish Container (aarch64)
         uses: home-assistant/builder@master
         with:
@@ -29,9 +24,15 @@ jobs:
             --docker-hub ottpeterr
 
   amd64:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Publish Container (amd64)
         uses: home-assistant/builder@master
         with:
@@ -41,9 +42,15 @@ jobs:
             --docker-hub ottpeterr
 
   armhf:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Publish Container (armhf)
         uses: home-assistant/builder@master
         with:
@@ -53,9 +60,15 @@ jobs:
             --docker-hub ottpeterr
 
   armv7:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Publish Container (armv7)
         uses: home-assistant/builder@master
         with:
@@ -65,9 +78,15 @@ jobs:
             --docker-hub ottpeterr
 
   i386:
-    needs: [setup]
     runs-on: ubuntu-latest
     steps:
+      - name: DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Publish Container (i386)
         uses: home-assistant/builder@master
         with:
