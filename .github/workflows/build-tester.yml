@@ -3,17 +3,72 @@ name: "Build Addon"
 on: [pull_request]
 
 jobs:
-  build:
-    name: Test build
+  aarch64:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Build Container
+      - name: Build Container (aarch64)
         uses: home-assistant/builder@master
         with:
           args: |
             --test \
-            --all \
+            --aarch64 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+
+  amd64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build Container (amd64)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --amd64 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+
+  armhf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build Container (armhf)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --armhf \
+            --target babybuddy \
+            --docker-hub ottpeterr
+
+  armv7:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build Container (armv7)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --armv7 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+
+  i386:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build Container (i386)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --i386 \
             --target babybuddy \
             --docker-hub ottpeterr
