@@ -20,7 +20,6 @@ RUN \
 # hadolint ignore=DL3003
 RUN \
   echo "**** install build packages ****" && \
-  apk add --no-cache rust cargo && \
   apk add --no-cache --virtual=build-dependencies \
   build-base \
   curl \
@@ -46,7 +45,9 @@ RUN \
   py3-mysqlclient \
   py3-pip \
   python3 \
-  nginx
+  nginx \
+  rust \
+  cargo
 
 RUN \
   echo "**** installing ****" && \
