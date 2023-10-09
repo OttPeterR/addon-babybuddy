@@ -9,11 +9,43 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Container
+      - name: Build Container (aarch64)
         uses: home-assistant/builder@master
         with:
           args: |
             --test \
-            --all \
+            --aarch64 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (amd64)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --amd64 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (armhf)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --armhf \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (armv7)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --armv7 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (i386)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --i386 \
             --target babybuddy \
             --docker-hub ottpeterr

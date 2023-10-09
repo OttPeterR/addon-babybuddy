@@ -16,10 +16,38 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build Container
+      - name: Build Container (aarch64)
         uses: home-assistant/builder@master
         with:
           args: |
-            --all \
+            --aarch64 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (amd64)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --amd64 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (armhf)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --armhf \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (armv7)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --armv7 \
+            --target babybuddy \
+            --docker-hub ottpeterr
+      - name: Build Container (i386)
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --i386 \
             --target babybuddy \
             --docker-hub ottpeterr
