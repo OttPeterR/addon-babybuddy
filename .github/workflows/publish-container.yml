@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Container (aarch64)
+      - name: Publish Container (aarch64)
         uses: home-assistant/builder@master
         with:
           args: |
@@ -34,7 +34,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Container (amd64)
+      - name: Publish Container (amd64)
         uses: home-assistant/builder@master
         with:
           args: |
@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Container (armhf)
+      - name: Publish Container (armhf)
         uses: home-assistant/builder@master
         with:
           args: |
@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Container (armv7)
+      - name: Publish Container (armv7)
         uses: home-assistant/builder@master
         with:
           args: |
@@ -76,7 +76,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Build Container (i386)
+      - name: Publish Container (i386)
         uses: home-assistant/builder@master
         with:
           args: |
