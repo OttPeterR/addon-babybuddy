@@ -5,8 +5,7 @@ on:
     types: [published]
 
 jobs:
-  publish:
-    name: Publish
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -16,6 +15,13 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+  publish_aarch64:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Build Container (aarch64)
         uses: home-assistant/builder@master
         with:
@@ -23,6 +29,13 @@ jobs:
             --aarch64 \
             --target babybuddy \
             --docker-hub ottpeterr
+
+  publish_amd64:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Build Container (amd64)
         uses: home-assistant/builder@master
         with:
@@ -30,6 +43,13 @@ jobs:
             --amd64 \
             --target babybuddy \
             --docker-hub ottpeterr
+
+  publish_armhf:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Build Container (armhf)
         uses: home-assistant/builder@master
         with:
@@ -37,6 +57,13 @@ jobs:
             --armhf \
             --target babybuddy \
             --docker-hub ottpeterr
+
+  publish_armv7:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Build Container (armv7)
         uses: home-assistant/builder@master
         with:
@@ -44,6 +71,13 @@ jobs:
             --armv7 \
             --target babybuddy \
             --docker-hub ottpeterr
+
+  publish_i386:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Build Container (i386)
         uses: home-assistant/builder@master
         with:
