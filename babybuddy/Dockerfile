@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.2.1
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.2.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,7 +11,7 @@ RUN \
   echo "**** downloading babybuddy ****" && \
   curl -o \
   /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.1.1.tar.gz" && \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.1.2.tar.gz" && \
   mkdir -p /app/babybuddy && \
   tar xf \
   /tmp/babybuddy.tar.gz -C \
