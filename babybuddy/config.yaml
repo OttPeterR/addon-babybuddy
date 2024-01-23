@@ -1,6 +1,6 @@
 ---
 name: Baby Buddy
-version: 2.2.0
+version: 2.2.0.1
 homeassistant: 2023.6.2
 slug: baby_buddy
 image: "ottpeterr/image-{arch}-babybuddy"
