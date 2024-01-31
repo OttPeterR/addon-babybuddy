@@ -9,6 +9,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN \
   echo "**** downloading babybuddy ****" && \
+  version=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/<user>/<repo>/releases/latest) \
+  version=${version##*/} \
+  echo $version \
   curl -o \
   /tmp/babybuddy.tar.gz -L \
   "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.2.0.tar.gz" && \

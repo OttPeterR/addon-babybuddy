@@ -15,7 +15,7 @@ jobs:
             --test \
             --aarch64 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub kennocha
 
   amd64:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
             --test \
             --amd64 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub kennocha
 
   armhf:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
             --test \
             --armhf \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub kennocha
 
   armv7:
     runs-on: ubuntu-latest
@@ -57,7 +57,7 @@ jobs:
             --test \
             --armv7 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub kennocha
 
   i386:
     runs-on: ubuntu-latest
@@ -71,4 +71,4 @@ jobs:
             --test \
             --i386 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub kennocha
