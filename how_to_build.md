@@ -18,9 +18,8 @@ when updating versions, make sure to bump the build.yaml as well
 
 Then for a new release:
 
-- have PR branch ready
-- make new release in github with new version
-  - point at PR branch to build+publish
-  - wait for the action to complete
-- merge branch into main
-  - this causes end users to see the update in HA
+1. have PR branch ready
+2. Make sure it passes build test (GitHub action)
+3. Make a new tag in GitHub, this will run an action to build then publish
+4. Wait for action to complete
+5. Merge PR branch into main (home assistant will pick up changes when they hit main)
