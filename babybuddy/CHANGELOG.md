@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.2.1.1
+
+### :arrow_up: Updated
+- Fix for notifications that keep coming back
+
 ## 2.2.1
 
 ### :arrow_up: Updated
