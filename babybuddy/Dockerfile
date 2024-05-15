@@ -49,13 +49,15 @@ RUN \
   rust \
   cargo
 
-RUN \
-  echo "**** installing ****" && \
-  cd /app/babybuddy && \
-  pip3 install -U --no-cache-dir \
-  pip && \
-  pip install -U --ignore-installed -r requirements.txt --only-binary :all:
+# Define PATH_MAX before including necessary headers
+RUN echo '#define PATH_MAX 4096' >> /usr/include/limits.h
 
+# Install dependencies and pandas
+RUN echo "**** installing ****" && \
+    cd /app/babybuddy && \
+    pip3 install -U --no-cache-dir pip && \
+    CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed -r requirements.txt
+    
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
