@@ -56,6 +56,7 @@ RUN echo '#define PATH_MAX 4096' >> /usr/include/limits.h
 RUN echo "**** installing ****" && \
     cd /app/babybuddy && \
     pip3 install -U --no-cache-dir pip && \
+    pip install --prefer-binary --no-cache-dir pandas && \
     CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt
     
 RUN \
