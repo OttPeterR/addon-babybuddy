@@ -54,7 +54,7 @@ RUN \
   cd /app/babybuddy && \
   pip3 install -U --no-cache-dir \
   pip && \
-  pip install -U --ignore-installed -r requirements.txt
+  pip install -U --ignore-installed -r requirements.txt --only-binary :all:
 
 RUN \
   echo "**** cleanup ****" && \
