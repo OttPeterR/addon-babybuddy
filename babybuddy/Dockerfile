@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.6
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:16.1.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -11,7 +11,7 @@ RUN \
   echo "**** downloading babybuddy ****" && \
   curl -o \
   /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.2.1.tar.gz" && \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.5.0.tar.gz" && \
   mkdir -p /app/babybuddy && \
   tar xf \
   /tmp/babybuddy.tar.gz -C \
@@ -49,13 +49,16 @@ RUN \
   rust \
   cargo
 
-RUN \
-  echo "**** installing ****" && \
-  cd /app/babybuddy && \
-  pip3 install -U --no-cache-dir \
-  pip && \
-  pip install -U --ignore-installed -r requirements.txt
+# Define PATH_MAX before including necessary headers
+RUN echo '#define PATH_MAX 4096' >> /usr/include/limits.h
 
+# Install dependencies and pandas
+RUN echo "**** installing ****" && \
+    cd /app/babybuddy && \
+    pip3 install -U --no-cache-dir pip && \
+    pip install --prefer-binary --no-cache-dir pandas && \
+    CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt
+    
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
