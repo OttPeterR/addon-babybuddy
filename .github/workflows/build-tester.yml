@@ -4,7 +4,7 @@ on: [pull_request]
 
 jobs:
   aarch64:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -18,7 +18,7 @@ jobs:
             --docker-hub shplack
 
   amd64:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -32,7 +32,7 @@ jobs:
             --docker-hub shplack
 
   armhf:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -46,7 +46,7 @@ jobs:
             --docker-hub shplack
 
   armv7:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -60,7 +60,7 @@ jobs:
             --docker-hub shplack
 
   i386:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3

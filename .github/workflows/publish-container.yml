@@ -6,7 +6,7 @@ on:
 
 jobs:
   aarch64:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: DockerHub
         uses: docker/login-action@v2
@@ -24,7 +24,7 @@ jobs:
             --docker-hub shplack
 
   amd64:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: DockerHub
         uses: docker/login-action@v2
@@ -42,7 +42,7 @@ jobs:
             --docker-hub shplack
 
   armhf:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: DockerHub
         uses: docker/login-action@v2
@@ -60,7 +60,7 @@ jobs:
             --docker-hub shplack
 
   armv7:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: DockerHub
         uses: docker/login-action@v2
@@ -78,7 +78,7 @@ jobs:
             --docker-hub shplack
 
   i386:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: DockerHub
         uses: docker/login-action@v2
