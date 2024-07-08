@@ -1,7 +1,8 @@
 name: "Publish Container"
 
 on:
-  release:
+  - workflow_dispatch
+  - release:
     types: [published]
 
 jobs:
@@ -24,6 +25,7 @@ jobs:
             --docker-hub shplack
 
   amd64:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: DockerHub
@@ -42,6 +44,7 @@ jobs:
             --docker-hub shplack
 
   armhf:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: DockerHub
@@ -60,6 +63,7 @@ jobs:
             --docker-hub shplack
 
   armv7:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: DockerHub
@@ -78,6 +82,7 @@ jobs:
             --docker-hub shplack
 
   i386:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: DockerHub
