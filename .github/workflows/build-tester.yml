@@ -16,7 +16,7 @@ jobs:
             --test \
             --aarch64 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub shplack
 
   amd64:
     if: false
@@ -31,9 +31,10 @@ jobs:
             --test \
             --amd64 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub shplack
 
   armhf:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -45,9 +46,10 @@ jobs:
             --test \
             --armhf \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub shplack
 
   armv7:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -59,7 +61,7 @@ jobs:
             --test \
             --armv7 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub shplack
 
   i386:
     if: false
@@ -74,4 +76,4 @@ jobs:
             --test \
             --i386 \
             --target babybuddy \
-            --docker-hub ottpeterr
+            --docker-hub shplack
