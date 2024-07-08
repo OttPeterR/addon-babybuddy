@@ -1,10 +1,12 @@
 name: "Build Addon"
 
-on: [pull_request]
+on:
+  - pull_request
+  - workflow_dispatch
 
 jobs:
   aarch64:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -15,10 +17,10 @@ jobs:
             --test \
             --aarch64 \
             --target babybuddy \
-            --docker-hub shplack
+            --docker-hub ottpeterr
 
   amd64:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -29,10 +31,10 @@ jobs:
             --test \
             --amd64 \
             --target babybuddy \
-            --docker-hub shplack
+            --docker-hub ottpeterr
 
   armhf:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -43,10 +45,10 @@ jobs:
             --test \
             --armhf \
             --target babybuddy \
-            --docker-hub shplack
+            --docker-hub ottpeterr
 
   armv7:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -57,10 +59,10 @@ jobs:
             --test \
             --armv7 \
             --target babybuddy \
-            --docker-hub shplack
+            --docker-hub ottpeterr
 
   i386:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -71,4 +73,4 @@ jobs:
             --test \
             --i386 \
             --target babybuddy \
-            --docker-hub shplack
+            --docker-hub ottpeterr
