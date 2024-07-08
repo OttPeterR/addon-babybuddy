@@ -1,7 +1,6 @@
 name: "Build Addon"
 
 on:
-  - pull_request
   - workflow_dispatch
 
 jobs:
@@ -20,6 +19,7 @@ jobs:
             --docker-hub ottpeterr
 
   amd64:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -62,6 +62,7 @@ jobs:
             --docker-hub ottpeterr
 
   i386:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
