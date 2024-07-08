@@ -13,7 +13,7 @@ PRs welcome!
 If you'd like to make a modification to Baby Buddy, fork this repo and add your changes! There's a github action that builds the container so you can check that your code works. See [here](https://developers.home-assistant.io/docs/add-ons/) for more info about developing Home Assistant Add-Ons
 
 # Accessing Baby Buddy
-Access BB though ingress in HA as you normally would. If you would like to skip the login process, there is a way to auto-login, but please be aware of the security implications. [See more in the docs](https://github.com/OttPeterR/addon-babybuddy/blob/main/babybuddy/DOCS.md)
+Access BB though ingress in HA as you normally would. If you would like to skip the login process, there is a way to auto-login, but please be aware of the security implications. [See more in the docs](https://github.com/shplack/addon-babybuddy/blob/main/babybuddy/DOCS.md)
 
 Alternatively if you configure a port in the addon configuration, you can access through `http://your-home-assistant.local:PORT`. This is what you must do if you want to host BB with another name (such as mydomain.duckdns.org/babybuddy)
 
@@ -25,7 +25,7 @@ This addon only runs Baby Buddy, if you would like to see some of the data as se
 ## Installation (basic)
 Add this addon-repo to your home assistant by going to to **Settings** -> **Add-ons** -> **Add-on Store** and add this URL as an additional repository: 
 ```txt
-https://github.com/OttPeterR/addon-babybuddy
+https://github.com/shplack/addon-babybuddy
 ```
 
 ### Additional setup for HTTPS via NGINX (using your own domain)

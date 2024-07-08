@@ -3,9 +3,9 @@ name: Baby Buddy
 version: 2.5.0
 homeassistant: 2023.6.2
 slug: baby_buddy
-image: "ottpeterr/image-{arch}-babybuddy"
+image: "shplack/image-{arch}-babybuddy"
 description: Track sleep, feedings, diaper changes, tummy time and more!
-url: https://github.com/OttPeterR/addon-babybuddy
+url: https://github.com/shplack/addon-babybuddy
 arch:
   - aarch64
   - amd64
@@ -20,11 +20,15 @@ ingress_stream: false
 panel_admin: false
 options:
   CSRF_TRUSTED_ORIGINS: ""
-  INGRESS_USER: ""
+  INGRESS_USER: admin
+  TIMEZONE: Europe/Stockholm
+  DEFAULT_LANGUAGE: en
   log_level: info
 schema:
   CSRF_TRUSTED_ORIGINS: str
   INGRESS_USER: str
+  TIMEZONE: str
+  DEFAULT_LANGUAGE: str
   log_level: list(debug|info|warning|error|critical)
 ports:
   8000/tcp: null
