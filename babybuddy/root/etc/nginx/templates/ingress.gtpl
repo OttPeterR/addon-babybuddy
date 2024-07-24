@@ -4,6 +4,14 @@ server {
     include /etc/nginx/includes/server_params.conf;
     include /etc/nginx/includes/proxy_params.conf;
 
+    location /media {
+        root /app/babybuddy;
+    }
+
+    location /static {
+        root /app/babybuddy;
+    }
+
     location / {
         allow   172.30.32.2;
         deny    all;
@@ -11,15 +19,6 @@ server {
         proxy_pass http://backend;
 
         absolute_redirect off;
-        proxy_redirect '/' $http_x_ingress_path/;
-        sub_filter 'href="/' 'href="$http_x_ingress_path/';
-        sub_filter 'href=/>' 'href="$http_x_ingress_path/">'; # Top left home icon
-        sub_filter 'action="/' 'action="$http_x_ingress_path/';
-        sub_filter '<script src="/' '<script src="$http_x_ingress_path/';
-        sub_filter '<img src="/' '<img src="$http_x_ingress_path/';
-        sub_filter "top.location.href='" "top.location.href='$http_x_ingress_path";
-
-        sub_filter_once off;
     {{ if .remoteuser }}
         proxy_set_header X-Remote-User '{{ .remoteuser }}';
     {{- end }}
