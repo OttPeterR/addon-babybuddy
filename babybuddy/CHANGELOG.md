@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 2.6.2
+### :arrow_up: Updated
+- Updated to Baby Buddy [2.6.2](https://github.com/babybuddy/babybuddy/releases/tag/v2.6.2)
+- Updated add on base to [16.3.4](https://github.com/hassio-addons/addon-base/releases/tag/v16.3.4)
+
 ## 2.2.1.1
 
 ### :arrow_up: Updated
