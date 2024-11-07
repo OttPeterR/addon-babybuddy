@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.6.3
+### :arrow_up: Updated
+- Updated to Baby Buddy [2.6.3](https://github.com/babybuddy/babybuddy/releases/tag/v2.6.3)
+
 ## 2.6.2
 ### :arrow_up: Updated
 - Updated to Baby Buddy [2.6.2](https://github.com/babybuddy/babybuddy/releases/tag/v2.6.2)
