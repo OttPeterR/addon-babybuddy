@@ -4,8 +4,9 @@ server {
     include /etc/nginx/includes/server_params.conf;
     include /etc/nginx/includes/proxy_params.conf;
 
-    location /media {
-        root /app/babybuddy;
+    location /media/ {
+        root /app/babybuddy/media/;
+        try_files $uri =404;
     }
 
     location /static {
