@@ -5,16 +5,17 @@ server {
     include /etc/nginx/includes/proxy_params.conf;
 
     location /media/ {
-        root /app/babybuddy/media/;
+        alias /app/babybuddy/media/;
         try_files $uri =404;
     }
 
-    location /static {
-        root /app/babybuddy;
+    location /static/ {
+        alias /app/babybuddy/static/;
+        try_files $uri =404;
     }
 
     location / {
-        allow   172.30.32.2;
+        allow   172.30.32.0/23;
         deny    all;
 
         proxy_pass http://backend;
