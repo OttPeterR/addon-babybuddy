@@ -19,7 +19,9 @@ If you'd like to make a modification to Baby Buddy, fork this repo and add your 
 
 Access BB though ingress in HA as you normally would. If you would like to skip the login process, there is a way to auto-login, but please be aware of the security implications. [See more in the docs](https://github.com/OttPeterR/addon-babybuddy/blob/main/babybuddy/DOCS.md)
 
-Alternatively if you configure a port in the addon configuration, you can access through `http://your-home-assistant.local:PORT`. This is what you must do if you want to host BB with another name (such as mydomain.duckdns.org/babybuddy) without using the Home Assistant NGINX addon installation process described below.
+Alternatively, you can configure the Home Assistant Nginx Proxy Manager using the instructions below to access Baby Buddy via your custom domain (e.g., `babybuddy.example.duckdns.org`).
+
+You can also expose the port to the Baby Buddy Django instance on your host machine to access Baby Buddy through `http://your-home-assistant.local:PORT`. However, this approach will not serve user uploaded content (e.g., child images stored in the `/media/` directory).
 
 If you come across a `CSRF_TRUSTED_ORIGINS` error, you can add that domain in the addon's `Configuration` page. Multiple domains can be added with a comma and no space to separate them.
 
