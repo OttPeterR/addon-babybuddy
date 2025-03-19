@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.7.1
+### ⬆️ Updated
+- Updated to Baby Buddy [2.7.1](https://github.com/babybuddy/babybuddy/releases/tag/v2.7.1)
+### 🐞 Fixed
+- [Custom child images](https://github.com/OttPeterR/addon-babybuddy/pull/84)
+
 ## 2.7.0
 ### ⬆️ Updated
 - Updated to Baby Buddy [2.7.0](https://github.com/babybuddy/babybuddy/releases/tag/v2.7.0)

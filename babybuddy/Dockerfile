@@ -11,7 +11,7 @@ RUN \
   echo "**** downloading babybuddy ****" && \
   curl -o \
   /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.7.0.tar.gz" && \
+  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.7.1.tar.gz" && \
   mkdir -p /app/babybuddy && \
   tar xf \
   /tmp/babybuddy.tar.gz -C \
@@ -54,10 +54,10 @@ RUN echo '#define PATH_MAX 4096' >> /usr/include/limits.h
 
 # Install dependencies
 RUN echo "**** installing ****" && \
-    cd /app/babybuddy && \
-    pip3 install -U --no-cache-dir pip && \
-    CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt
-    
+  cd /app/babybuddy && \
+  pip3 install -U --no-cache-dir pip && \
+  CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt
+
 RUN \
   echo "**** cleanup ****" && \
   apk del --purge \
