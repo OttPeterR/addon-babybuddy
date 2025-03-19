@@ -12,7 +12,7 @@ If you are hosting your baby buddy via another domain (such as babybuddy.mydomai
 
 ### Option: `Network port`
 
-Access baby buddy through this port. (ex: hassio.local:8889 when set to 8889) Be sure to check that this port is not already taken.
+Access baby buddy through this port on your host machine. (ex: hassio.local:8889 when set to 8889) Be sure to check that this port is not already taken.
 
 ### Option: `NAP_START_MIN` and `NAP_START_MAX`
 

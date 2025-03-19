@@ -13,7 +13,7 @@ server {
     }
 
     location / {
-        allow   172.30.32.2;
+        allow   172.30.32.0/23;
         deny    all;
 
         proxy_pass http://backend;
