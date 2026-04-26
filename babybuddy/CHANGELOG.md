@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.8.0  
+### ⬆️ Updated
+- Updated to Baby Buddy [2.8.0](https://github.com/babybuddy/babybuddy/releases/tag/v2.8.0)
+
 ## 2.7.1
 ### ⬆️ Updated
 - Updated to Baby Buddy [2.7.1](https://github.com/babybuddy/babybuddy/releases/tag/v2.7.1)
