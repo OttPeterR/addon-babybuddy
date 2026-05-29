@@ -65,6 +65,7 @@ export \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \
     SECRET_KEY="${SECRET_KEY:-$(cat "${secret_key_file}")}"
+python3 manage.py collectstatic --noinput
 python3 manage.py createcachetable
 python3 manage.py migrate --noinput
 

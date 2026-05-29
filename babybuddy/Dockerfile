@@ -33,6 +33,9 @@ RUN \
   fi
 
 # hadolint ignore=DL3003
+RUN apk upgrade --no-cache && apk add --no-cache musl libcrypto3 libssl3
+
+# hadolint ignore=DL3003
 RUN \
   echo "**** install build packages ****" && \
   apk add --no-cache --virtual=build-dependencies \
@@ -71,7 +74,8 @@ RUN echo '#define PATH_MAX 4096' >> /usr/include/limits.h
 RUN echo "**** installing ****" && \
   cd /app/babybuddy && \
   pip3 install -U --no-cache-dir pip && \
-  CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt
+  CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt && \
+  pip install -U --no-cache-dir https://github.com/zachfeldman/babybuddy-books/archive/refs/heads/main.tar.gz
 
 RUN \
   echo "**** cleanup ****" && \
