@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 2.9.2
+### ⬆️ Updated
+- Bumps bundled Baby Buddy to [2.9.2](https://github.com/babybuddy/babybuddy/releases/tag/v2.9.2) (from 2.8.0; includes upstream 2.9.0, 2.9.1, and 2.9.2).
+### 🆕 Added
+- Medication/medicine tracking (upstream [#1036](https://github.com/babybuddy/babybuddy/pull/1036)).
+- Korean (ko) translations (upstream [#1028](https://github.com/babybuddy/babybuddy/pull/1028)).
+- Recent Pumpings dashboard widget (upstream [#1040](https://github.com/babybuddy/babybuddy/pull/1040)).
+### 🐞 Fixed
+- XFF (X-Forwarded-For) header processing when behind a reverse proxy (upstream [#997](https://github.com/babybuddy/babybuddy/pull/997), [#1061](https://github.com/babybuddy/babybuddy/pull/1061)).
+- Japanese (ja) translation corrections (upstream [#1055](https://github.com/babybuddy/babybuddy/pull/1055)).
+
 ## 2.8.0
 ### ⬆️ Updated
 - Bumps bundled Baby Buddy to [2.8.0](https://github.com/babybuddy/babybuddy/releases/tag/v2.8.0).

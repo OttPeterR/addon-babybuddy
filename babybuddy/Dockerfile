@@ -3,7 +3,7 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/base:20.0.1
 FROM ${BUILD_FROM}
 
 # Optional: BABYBUDDY_GIT_REF + BABYBUDDY_GIT_URL clone that ref instead of the
-# v2.8.0 tarball (build.yaml `args` or docker --build-arg). Leave unset for release builds.
+# v2.9.2 tarball (build.yaml `args` or docker --build-arg). Leave unset for release builds.
 ARG BABYBUDDY_GIT_REF=
 ARG BABYBUDDY_GIT_URL=https://github.com/babybuddy/babybuddy.git
 
@@ -22,10 +22,10 @@ RUN \
     rm -rf /tmp/babybuddy-src && \
     apk del --no-cache git; \
   else \
-    echo "**** downloading babybuddy v2.8.0 tarball ****" && \
+    echo "**** downloading babybuddy v2.9.2 tarball ****" && \
     curl -o \
     /tmp/babybuddy.tar.gz -L \
-    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.8.0.tar.gz" && \
+    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.9.2.tar.gz" && \
     mkdir -p /app/babybuddy && \
     tar xf \
     /tmp/babybuddy.tar.gz -C \
