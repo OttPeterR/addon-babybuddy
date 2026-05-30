@@ -23,7 +23,7 @@ Alternatively, you can configure the Home Assistant Nginx Proxy Manager using th
 
 You can also expose the port to the Baby Buddy Django instance on your host machine to access Baby Buddy through `http://your-home-assistant.local:PORT`. However, this approach will not serve user uploaded content (e.g., child images stored in the `/media/` directory).
 
-If you come across a `CSRF_TRUSTED_ORIGINS` error, you can add that domain in the addon's `Configuration` page. Multiple domains can be added with a comma and no space to separate them.
+If you come across a `CSRF_TRUSTED_ORIGINS` error, you can add that domain in the addon's `Configuration` page (include `http://` or `https://` before the host). Multiple domains can be added with a comma and no space to separate them.
 
 ## Home Assistant Integration
 

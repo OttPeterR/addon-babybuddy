@@ -8,7 +8,9 @@
 
 ### Option: `CSRF_TRUSTED_ORIGINS`
 
-If you are hosting your baby buddy via another domain (such as babybuddy.mydomain.com) then add this here to be allowed to access it. If you are shown an error message while trying to log in, this is the place to set it. If you want to use multiple domains, enter them with a comma and no space (eg `http://baby.example.com,https://babybuddy.mydomain.com`)
+If you are hosting your baby buddy via another domain (such as babybuddy.mydomain.com) then add this here to be allowed to access it. If you are shown an error message while trying to log in, this is the place to set it. If you want to use multiple domains, enter them with a comma and no space (eg `http://baby.example.com,https://babybuddy.mydomain.com`).
+
+Each value must be a full **origin** including the scheme (`http://` or `https://`) and host (and port if you use one), e.g. `http://homeassistant.local:8123`. Values without a scheme are rejected when the add-on service starts (before the web app runs); check the add-on **Log** tab for `bashio::log.error` lines if Baby Buddy fails to start.
 
 ### Option: `Network port`
 

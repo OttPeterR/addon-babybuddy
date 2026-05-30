@@ -1,5 +1,7 @@
 #!/command/with-contenv bashio
 #
+# CSRF_TRUSTED_ORIGINS scheme validation runs in cont-init.d/babybuddy.sh so bad
+# config fails startup once; validating here would restart forever under s6-supervise.
 
 declare -a options
 
@@ -11,7 +13,9 @@ options+=(--workers=2)
 options+=(--threads=4)
 options+=(--worker-class=gthread)
 
-cd /app/babybuddy || bashio.exit.nok 'Failed cd, /app/babybuddy does not exist, exiting...'
+cd /app/babybuddy || bashio::exit.nok 'Failed cd, /app/babybuddy does not exist, exiting...'
+
+csrf_raw="$(bashio::config 'CSRF_TRUSTED_ORIGINS')"
 
 export \
     DJANGO_SETTINGS_MODULE="babybuddy.settings.homeassistant" \
@@ -19,10 +23,9 @@ export \
     TIME_ZONE="${TZ:-UTC}" \
     DEBUG="${DEBUG:-False}" \
     ENABLE_HOME_ASSISTANT_SUPPORT=true \
-    SECRET_KEY="${SECRET_KEY:-$(cat /config/.secretkey)}"
+    SECRET_KEY="${SECRET_KEY:-$(cat /data/.secretkey)}"
 
-export \
-    CSRF_TRUSTED_ORIGINS=$(bashio::config "CSRF_TRUSTED_ORIGINS")
+export CSRF_TRUSTED_ORIGINS="${csrf_raw}"
 
 if bashio::config.has_value "INGRESS_USER"; then
     bashio::log.info 'Adding config for Ingress User Auth'
@@ -33,4 +36,3 @@ fi
 
 exec \
     s6-setuidgid root gunicorn babybuddy.wsgi "${options[@]}"
-

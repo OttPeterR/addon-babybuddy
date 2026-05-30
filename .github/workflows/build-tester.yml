@@ -1,6 +1,8 @@
 name: "Build Addon"
 
-on: [pull_request]
+on:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   aarch64:
@@ -28,47 +30,5 @@ jobs:
           args: |
             --test \
             --amd64 \
-            --target babybuddy \
-            --docker-hub ottpeterr
-
-  armhf:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Build Container (armhf)
-        uses: home-assistant/builder@master
-        with:
-          args: |
-            --test \
-            --armhf \
-            --target babybuddy \
-            --docker-hub ottpeterr
-
-  armv7:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Build Container (armv7)
-        uses: home-assistant/builder@master
-        with:
-          args: |
-            --test \
-            --armv7 \
-            --target babybuddy \
-            --docker-hub ottpeterr
-
-  i386:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Build Container (i386)
-        uses: home-assistant/builder@master
-        with:
-          args: |
-            --test \
-            --i386 \
             --target babybuddy \
             --docker-hub ottpeterr

@@ -1,6 +1,11 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:17.2.1
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:20.0.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
+
+# Optional: BABYBUDDY_GIT_REF + BABYBUDDY_GIT_URL clone that ref instead of the
+# v2.9.2 tarball (build.yaml `args` or docker --build-arg). Leave unset for release builds.
+ARG BABYBUDDY_GIT_REF=
+ARG BABYBUDDY_GIT_URL=https://github.com/babybuddy/babybuddy.git
 
 VOLUME ["/run"]
 
@@ -8,14 +13,27 @@ VOLUME ["/run"]
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN \
-  echo "**** downloading babybuddy ****" && \
-  curl -o \
-  /tmp/babybuddy.tar.gz -L \
-  "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.7.1.tar.gz" && \
-  mkdir -p /app/babybuddy && \
-  tar xf \
-  /tmp/babybuddy.tar.gz -C \
-  /app/babybuddy --strip-components=1
+  if [[ -n "${BABYBUDDY_GIT_REF}" ]]; then \
+    apk add --no-cache git && \
+    echo "**** cloning babybuddy (${BABYBUDDY_GIT_REF}) ****" && \
+    git clone --branch "${BABYBUDDY_GIT_REF}" --depth 1 "${BABYBUDDY_GIT_URL}" /tmp/babybuddy-src && \
+    mkdir -p /app/babybuddy && \
+    cp -a /tmp/babybuddy-src/. /app/babybuddy/ && \
+    rm -rf /tmp/babybuddy-src && \
+    apk del --no-cache git; \
+  else \
+    echo "**** downloading babybuddy v2.9.2 tarball ****" && \
+    curl -o \
+    /tmp/babybuddy.tar.gz -L \
+    "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.9.2.tar.gz" && \
+    mkdir -p /app/babybuddy && \
+    tar xf \
+    /tmp/babybuddy.tar.gz -C \
+    /app/babybuddy --strip-components=1; \
+  fi
+
+# hadolint ignore=DL3003
+RUN apk upgrade --no-cache && apk add --no-cache musl libcrypto3 libssl3
 
 # hadolint ignore=DL3003
 RUN \
@@ -56,7 +74,8 @@ RUN echo '#define PATH_MAX 4096' >> /usr/include/limits.h
 RUN echo "**** installing ****" && \
   cd /app/babybuddy && \
   pip3 install -U --no-cache-dir pip && \
-  CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt
+  CFLAGS="-DPATH_MAX=4096" pip install -U --ignore-installed --prefer-binary -r requirements.txt && \
+  pip install -U --no-cache-dir https://github.com/zachfeldman/babybuddy-books/archive/refs/heads/main.tar.gz
 
 RUN \
   echo "**** cleanup ****" && \
