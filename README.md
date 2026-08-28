@@ -27,7 +27,7 @@ If you come across a `CSRF_TRUSTED_ORIGINS` error, you can add that domain in th
 
 ## Home Assistant Integration
 
-This addon only runs Baby Buddy, if you would like to see some of the data as sensors in Home Asssitant to crete automations, you also need [the integration](https://github.com/jcgoette/baby_buddy_homeassistant) that pulls data from the addon.
+This addon only runs Baby Buddy, if you would like to see some of the data as sensors in Home Asssitant to create automations, you also need [the integration](https://github.com/jcgoette/baby_buddy_homeassistant) that pulls data from the addon.
 
 ## Installation (basic)
 
