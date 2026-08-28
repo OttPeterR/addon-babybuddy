@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 2.10.0
+### ⬆️ Updated
+- Bumps bundled Baby Buddy to [2.10.0](https://github.com/babybuddy/babybuddy/releases/tag/v2.10.0) (from 2.9.2).
+### 🆕 Added
+- Loading spinner on submit buttons, preventing double submission (upstream [#1051](https://github.com/babybuddy/babybuddy/pull/1051)).
+- Bidirectional language support in `base.html` (upstream [#1082](https://github.com/babybuddy/babybuddy/pull/1082)).
+### 🐞 Fixed
+- Feeding intervals are computed from feeding end times, including on the dashboard (upstream [#944](https://github.com/babybuddy/babybuddy/pull/944)).
+- Weight and height percentile sorting/slicing mismatch (upstream [#1076](https://github.com/babybuddy/babybuddy/pull/1076)).
+- 500 error on Python 3.14 by allowing django-imagekit >= 6.0 (upstream [#1104](https://github.com/babybuddy/babybuddy/pull/1104)).
+
 ## 2.9.2
 ### ⬆️ Updated
 - Bumps bundled Baby Buddy to [2.9.2](https://github.com/babybuddy/babybuddy/releases/tag/v2.9.2) (from 2.8.0; includes upstream 2.9.0, 2.9.1, and 2.9.2).
