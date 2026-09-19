@@ -22,7 +22,7 @@ RUN \
     rm -rf /tmp/babybuddy-src && \
     apk del --no-cache git; \
   else \
-    echo "**** downloading babybuddy v2.10.0 tarball ****" && \
+    echo "**** downloading babybuddy v2.11.0 tarball ****" && \
     curl -o \
     /tmp/babybuddy.tar.gz -L \
     "https://github.com/babybuddy/babybuddy/archive/refs/tags/v2.11.0.tar.gz" && \
